@@ -16,4 +16,4 @@ sys.path.append("/Workspace/Users/reddy.nie11@gmail.com/New Pipeline 2026-01-21 
 
 # !!! Before performing any data analysis, make sure to run the pipeline to materialize the sample datasets. The tables referenced in this notebook depend on that step.
 
-display(spark.sql("SELECT * FROM workspace.default.sample_aggregation_jan_21_1259"))
+display(spark.sql("SELECT * FROM lakeflow_catalog.sales_app.business_sales_agg"))
