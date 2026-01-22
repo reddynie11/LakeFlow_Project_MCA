@@ -12,7 +12,7 @@ dlt.create_streaming_table(
 )
 def customers_silver_view():
     df = spark.readStream.table(
-        "lakeflow_catalog.bronze.customers_raw"
+        "lakeflow_catalog.sales_app.customers_raw"
     )
     df = df.withColumn(
         "customer_name",
