@@ -6,7 +6,7 @@ product_rules = {
 }
 # Ingesting products into Bronze layer
 @dlt.table(
-    name="products_bronze"
+    name="products_raw"
 )
 @dlt.expect_all(product_rules)
 def products_bronze():

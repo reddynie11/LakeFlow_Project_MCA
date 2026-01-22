@@ -5,7 +5,7 @@ customer_rules = {
     "rule_2" : "customer_name IS NOT NULL"
 }
 
-@dlt.table(name="customers_bronze")
+@dlt.table(name="customers_raw")
 @dlt.expect_all(customer_rules)
 def customers_bronze():
     return spark.readStream.table("lakeflow_catalog.source.customers")

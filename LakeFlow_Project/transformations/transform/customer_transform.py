@@ -3,16 +3,16 @@ from pyspark.sql.functions import col, upper
 
 
 dlt.create_streaming_table(
-    name="customers_silver"
+    name="customers_clean"
 )
 
 
 @dlt.view(
-    name="customers_stg_view"
+    name="cust_raw_stg_view"
 )
 def customers_silver_view():
     df = spark.readStream.table(
-        "lakeflow_catalog.bronze.customers_bronze"
+        "lakeflow_catalog.bronze.customers_raw"
     )
     df = df.withColumn(
         "customer_name",
@@ -22,8 +22,8 @@ def customers_silver_view():
 
 
 dlt.create_auto_cdc_flow(
-    target="customers_silver",
-    source="customers_stg_view",
+    target="customers_clean",
+    source="cust_raw_stg_view",
     keys=["customer_id"],
     sequence_by="last_updated",
     stored_as_scd_type=1,
