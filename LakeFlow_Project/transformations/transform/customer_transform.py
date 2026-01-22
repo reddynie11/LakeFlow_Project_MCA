@@ -8,7 +8,7 @@ dlt.create_streaming_table(
 
 
 @dlt.view(
-    name="cust_raw_stg_view"
+    name="cust_raw_stg"
 )
 def customers_silver_view():
     df = spark.readStream.table(
@@ -23,7 +23,7 @@ def customers_silver_view():
 
 dlt.create_auto_cdc_flow(
     target="customers_clean",
-    source="cust_raw_stg_view",
+    source="cust_raw_stg",
     keys=["customer_id"],
     sequence_by="last_updated",
     stored_as_scd_type=1,
